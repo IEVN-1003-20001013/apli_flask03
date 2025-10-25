@@ -1,0 +1,16 @@
+{% extends "layuot.html" %}
+
+{%block content%}
+<h1>Hola mundo con index</h1>
+
+<h1>{{ titulo }}</h1>
+    <ul>
+        {% for item in listado %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+    
+{%endblock%}
+
+
+

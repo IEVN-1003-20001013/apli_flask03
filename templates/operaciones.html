@@ -1,0 +1,18 @@
+{% extends "layuot.html" %}
+
+{%block content%}
+
+<h1 class="text-center mb-4">Sumar Dos Números</h1>
+
+<form method="POST">
+    <label for="x1">Número 1:</label>
+    <input type="number" step="any" id="x1" name="x1" value="{{ n1 }}"><br><br>
+
+    <label for="x2">Número 2:</label>
+    <input type="number" step="any" id="x2" name="x2" value="{{ n2 }}"><br><br>
+
+    <input type="submit" value="Sumar">
+</form>
+
+
+{%endblock%}
