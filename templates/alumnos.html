@@ -1,0 +1,22 @@
+{% extends "layuot.html" %}
+{% block content %}
+{% import "_macros.html" as macro %}
+
+<form action="" method="post" class="form-control p-3" novalidate>
+    <h1>Formulario de alumnos</h1>
+    {{ macro.campoNuevo(form.matricula) }}
+    {{ macro.campoNuevo(form.nombre) }}
+    {{ macro.campoNuevo(form.apellido) }}
+    {{ macro.campoNuevo(form.correo) }}
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+<hr>
+<h4>Datos enviados:</h4>
+<p>Matrícula: {{ mat }}</p>
+<p>Nombre: {{ nom }}</p>
+<p>Apellido: {{ ape }}</p>
+<p>Email: {{ em }}</p>
+
+<a href="{{ url_for('get_cookie') }}" class="btn btn-success mt-3">Ver lista de alumnos</a>
+{% endblock %}

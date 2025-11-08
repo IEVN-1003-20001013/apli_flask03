@@ -1,0 +1,119 @@
+{% extends "layuot.html" %}
+{% block content %}
+{% import "_macros.html" as macro %}
+
+<div class="container my-4 bg-light p-4 border rounded shadow">
+    <form method="POST">
+        
+        <div class="bg-primary bg-opacity-25 border rounded p-3 mb-3">
+            <div class="row g-3">
+                <div class="col-md-4">{{ macro.campoNuevo(cliente_form.nombre) }}</div>
+                <div class="col-md-4">{{ macro.campoNuevo(cliente_form.direccion) }}</div>
+                <div class="col-md-4">{{ macro.campoNuevo(cliente_form.telefono) }}</div>
+            </div>
+
+            
+            <div class="row mt-4">
+               
+                <div class="col-md-4">
+                    <div class="border rounded p-3 bg-info bg-opacity-25 h-100">
+                        <h6 class="fw-bold mb-2">Tamaño Pizza</h6>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tamano" value="chica" checked>
+                            <label class="form-check-label">Chica $40</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tamano" value="mediana">
+                            <label class="form-check-label">Mediana $80</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tamano" value="grande">
+                            <label class="form-check-label">Grande $120</label>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="col-md-4">
+                    <div class="border rounded p-3 bg-info bg-opacity-25 h-100">
+                        <h6 class="fw-bold mb-2">Ingredientes</h6>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="ingredientes" value="jamon">
+                            <label class="form-check-label">Jamón $10</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="ingredientes" value="pina">
+                            <label class="form-check-label">Piña $10</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="ingredientes" value="champiñones">
+                            <label class="form-check-label">Champiñones $10</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="border rounded p-3 bg-info bg-opacity-25 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <label class="form-label fw-bold">Num. de Pizzas:</label>
+                            <input type="number" name="cantidad" class="form-control" min="1" value="1">
+                        </div>
+                        <button type="submit" name="agregar" class="btn btn-secondary mt-3">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="row g-3">
+            <div class="col-md-8">
+                <div class="border rounded bg-light p-3">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm align-middle">
+                            <thead class="table-secondary">
+                                <tr>
+                                    <th class="text-center">*</th>
+                                    <th>Tamaño</th>
+                                    <th>Ingredientes</th>
+                                    <th>Num. Pizzas</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for p in pizzas %}
+                                <tr>
+                                    <td class="text-center">
+                                        <button type="submit" name="quitar" value="{{ loop.index0 }}" class="btn btn-sm btn-danger">X</button>
+                                    </td>
+                                    <td>{{ p.tamano }}</td>
+                                    <td>{{ p.ingredientes }}</td>
+                                    <td>{{ p.cantidad }}</td>
+                                    <td>${{ p.subtotal }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" name="terminar" class="btn btn-dark mt-2">Terminar</button>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-md-4">
+                <div class="border rounded bg-light p-3 text-center">
+                    <h5 class="fw-bold mb-3">Ventas del día</h5>
+                    <div class="text-start">
+                        {% for v in ventas %}
+                            <p class="mb-1">{{ v.nombre }} total ${{ v.total }}</p>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <p class="fw-bold fs-6">Ventas totales del día: ${{ total_general }}</p>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

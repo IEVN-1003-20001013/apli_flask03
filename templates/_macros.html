@@ -1,0 +1,38 @@
+{% macro campo1(name, placeholder, type='text')%}
+
+<div class="mb-3">
+    <label for="{{name}}" class="form-label">N1</label>
+    <input type="{{type}}" class="form-control" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}">
+</div>
+
+{%endmacro%}
+
+
+{% macro campoNuevo(field)%}
+
+  <dt>{{ field.label }}
+  <dd>{{ field(**kwargs)|safe }}
+  {% if field.errors %}
+    <ul class=errors>
+    {% for error in field.errors %}
+      <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  </dd>
+
+{%endmacro%}
+
+{% macro input_field(label, name) %}
+    <label>{{ label }}:</label> <input type="number" step="any" name="{{ name }}" required><br>
+{% endmacro %}
+
+{% macro campoNuevo(campo) %}
+<div class="mb-3">
+    {{ campo.label(class="form-label fw-bold") }}
+    {{ campo(class="form-control") }}
+    {% if campo.errors %}
+        <div class="text-danger small">{{ campo.errors[0] }}</div>
+    {% endif %}
+</div>
+{% endmacro %}

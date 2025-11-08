@@ -1,5 +1,14 @@
 {% extends "layuot.html" %}
 
 {%block content%}
+{% import "_macros.html" as macro%}
+
 <h1>Distancia</h1>
+<form class="form-control" action="" method="post">
+{{macro.campo1('x1','ingrese X1', "number")}}
+{{macro.campo1('x2','ingrese X2', "number")}}
+{{macro.campo1('y1','ingrese Y1', "number")}}
+{{macro.campo1('y2','ingrese Y2', "number")}}
+</form>
+
 {%endblock%}
